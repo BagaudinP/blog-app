@@ -1,0 +1,100 @@
+.sidebar {
+  &-title {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  &-popular {
+    margin-bottom: 30px;
+    &__item {
+      position: relative;
+      img {
+        width: 300px;
+        height: 200px;
+      }
+      &-description {
+        padding: 20px 30px;
+        position: absolute;
+        bottom: 4px;
+        &:hover {
+          transition: all 0.4s ease;
+          transform: translateY(-4px);
+        }
+        span,
+        h3 {
+          color: #fff;
+          width: 240px;
+          cursor: pointer;
+        }
+        span {
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+        h3 {
+          font-size: 16px;
+          font-family: Playfair Display, serif;
+        }
+      }
+    }
+  }
+  &-recent {
+    margin-bottom: 30px;
+    &__item {
+      display: flex;
+      img {
+        width: 70px;
+        height: 58.18px;
+      }
+      &-description {
+        margin-left: 16px;
+        h3 {
+          cursor: pointer;
+          --max-lines: 2;
+          max-height: calc(1.3em * var(--max-lines));
+          overflow: hidden;
+          line-height: 1.3em;
+          min-height: 0;
+          font-weight: 400;
+          font-size: 13px;
+          transition: all 0.4s ease;
+          &:hover {
+            color: #ef534f;
+          }
+        }
+        span {
+          color: #666;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+  &-categories {
+    ul {
+      list-style: none;
+      li {
+        border-bottom: 1px solid #eaeaea;
+        a {
+          color: #666;
+          font-size: 16px;
+          font-weight: 500;
+          padding: 10px 0;
+          display: flex;
+          justify-content: space-between;
+          text-decoration: none;
+          align-items: center;
+          line-height: 1.8em;
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+.card {
+  width: 385px;
+  height: 436px;
+  &-img {
+    width: 385px;
+    height: 256px;
+    img {
+      position: absolute;
+    }
+    &__favorite {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      border-radius: 22%;
+      background: #ef534f;
+      position: relative;
+      top: 10px;
+      left: 10px;
+      &:hover {
+        background: #cccccc;
+      }
+    }
+    &__active {
+      background: #adadad;
+      &:hover {
+        background: #ff7f7b;
+      }
+    }
+  }
+  &-main {
+    padding: 20px 0 0;
+    &__subtitle {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 500;
+      font-family: Playfair Display, serif;
+      transition: all 0.4s ease;
+      --max-lines: 1;
+      max-height: calc(26px * var(--max-lines));
+      overflow: hidden;
+      &:hover {
+        color: #ef534f;
+      }
+    }
+    &__info {
+      display: block;
+      padding: 14px 0;
+      span {
+        display: flex;
+        align-items: center;
+        color: #666;
+        font-size: 12px;
+        text-transform: uppercase;
+        img {
+          width: 16px;
+        }
+        strong {
+          color: #666;
+          font-weight: 600;
+          margin-left: 4px;
+        }
+        ::after {
+          content: "-";
+          position: relative;
+          display: inline-block;
+          margin: 0 10px;
+          font-weight: 400;
+          color: #666;
+        }
+        &:last-child {
+          ::after {
+            content: none;
+          }
+        }
+      }
+    }
+    &__description {
+      color: #666;
+      font-weight: 300;
+      font-size: 13px;
+      margin-bottom: 20px;
+      --max-lines: 2;
+      max-height: calc(14px * var(--max-lines));
+      overflow: hidden;
+    }
+  }
+  &-btn {
+    a {
+      font-size: 12px;
+      font-weight: 400;
+      color: #666;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      text-decoration: underline;
+      &:hover {
+        color: #ef534f;
+      }
+    }
+  }
+}
