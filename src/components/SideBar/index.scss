@@ -87,6 +87,10 @@
           text-decoration: none;
           align-items: center;
           line-height: 1.8em;
+          &:hover {
+            transition: all 0.5s ease;
+            color: #ef534f;
+          }
           span {
             display: flex;
             justify-content: center;

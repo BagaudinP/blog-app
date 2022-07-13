@@ -5,6 +5,8 @@
     width: 385px;
     height: 256px;
     img {
+      width: 385px;
+      height: 256px;
       position: absolute;
     }
     &__favorite {
@@ -54,10 +56,21 @@
         img {
           width: 16px;
         }
+        svg {
+          width: 16px;
+          cursor: pointer;
+          path {
+            &:hover {
+              stroke: transparent;
+              fill: #ef534f !important;
+            }
+          }
+        }
         strong {
           color: #666;
           font-weight: 600;
           margin-left: 4px;
+          text-transform: none;
         }
         ::after {
           content: "-";
@@ -80,7 +93,7 @@
       font-size: 13px;
       margin-bottom: 20px;
       --max-lines: 2;
-      max-height: calc(14px * var(--max-lines));
+      max-height: calc(15px * var(--max-lines));
       overflow: hidden;
     }
   }
