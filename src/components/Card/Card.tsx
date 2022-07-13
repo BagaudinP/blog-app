@@ -1,6 +1,4 @@
 import iconClock from "../../assets/icons/clock.png";
-import iconHeart from "../../assets/icons/heart.png";
-import imgCard from "../../assets/img/img.jpg";
 import { IPost } from "../models/models";
 
 import "./index.scss";

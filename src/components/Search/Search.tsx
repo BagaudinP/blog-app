@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchValue } from "../../redux/slices/filterSlice";
+import debounce from "lodash.debounce";
+
 import "./index.scss";
 
 export const Search = () => {
+  const dispatch = useDispatch();
+
   const [value, setValue] = React.useState<string>("");
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    updateSearchValue(event.target.value);
+  };
+
+  const updateSearchValue = useCallback(
+    debounce((str: string) => {
+      dispatch(setSearchValue(str));
+    }, 500),
+    []
+  );
+
+  const onClickClear = () => {
+    dispatch(setSearchValue(""));
+    setValue("");
+    inputRef.current?.focus();
+  };
 
   return (
     <div className="search">
-      <input value={value} placeholder="Поиск по постам" />
+      <input value={value} onChange={onChangeInput} placeholder="Поиск по постам" />
       {value ? (
         <svg
+          onClick={onClickClear}
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"

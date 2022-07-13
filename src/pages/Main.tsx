@@ -3,31 +3,65 @@ import { Card } from "../components/Card/Card";
 import Sidebar from "../components/SideBar/Sidebar";
 import { fetchPosts } from "../redux/actions/postActions";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import CardSkeleton from "../components/Card/CardSkeleton";
+import NotFoundMain from "./NotFound";
+import ReactPaginate from "react-paginate";
+import { setCurrentPage } from "../redux/slices/filterSlice";
 
-export const Main = () => {
+const Main = () => {
   const dispatch = useAppDispatch();
 
-  const { posts } = useAppSelector((state) => state.post);
+  const { page, searchValue } = useAppSelector((state) => state.filter);
+  const { posts, loading, error } = useAppSelector((state) => state.post);
+
+  const pageCount = Math.ceil(posts.length);
+
+  const onPageChange = ({ selected }: { selected: number }): void => {
+    const page = selected + 1;
+    dispatch(setCurrentPage(page));
+  };
 
   React.useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
+    dispatch(fetchPosts(page, searchValue));
+  }, [dispatch, page, searchValue]);
 
   return (
     <div className="main">
-      <div className="main-title">
-        <h1>Все посты</h1>
-      </div>
-      <div className="main-content d-flex">
-        <div className="main-content__items d-flex">
-          {posts.map((post) => (
-            <Card key={post.id} post={post} />
-          ))}
-        </div>
-        <div className="main-content__sidebar">
-          <Sidebar />
-        </div>
-      </div>
+      {error ? (
+        <NotFoundMain error={error} />
+      ) : (
+        <>
+          <div className="main-title">
+            <h1>Все посты</h1>
+          </div>
+          <div className="main-content d-flex">
+            <div className="main-content__items d-flex">
+              {loading ? (
+                [...new Array(6)].map((_, index) => <CardSkeleton key={index} />)
+              ) : (
+                <>
+                  {posts.map((post) => (
+                    <Card key={post.id} post={post} />
+                  ))}
+                </>
+              )}
+              <ReactPaginate
+                className="main-paginate d-flex justify-center align-center"
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={onPageChange}
+                pageRangeDisplayed={4}
+                pageCount={pageCount}
+                forcePage={page - 1}
+                previousLabel="<"
+              />
+            </div>
+            <div className="main-content__sidebar">
+              <Sidebar />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

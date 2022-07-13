@@ -67,5 +67,39 @@
         flex: 20%;
       }
     }
+    &-paginate {
+      list-style: none;
+      border-radius: 12px;
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin: 2px;
+        border-radius: 20%;
+        border: 1px solid #000;
+        &.selected {
+          border: none;
+          background: #bfbfbf;
+          a {
+            color: #fff;
+          }
+        }
+        &.disabled {
+          cursor: inherit;
+          opacity: 0.1;
+          background: #bfbfbf;
+        }
+        &:hover {
+          color: #fff;
+          border: none;
+          background: #bfbfbf;
+        }
+        a {
+          padding: 10px 15px;
+          font-weight: 600;
+        }
+      }
+    }
   }
 }
