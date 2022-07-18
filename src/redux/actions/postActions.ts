@@ -7,7 +7,7 @@ export const fetchPosts = (page: number, searchValue: string) => {
     try {
       dispatch(postSlice.actions.fetching());
       const resp = await axios.get(
-        `https://611bbf4422020a00175a46da.mockapi.io/posts?page=${page}&limit=4&${searchValue}`
+        `https://611bbf4422020a00175a46da.mockapi.io/posts?page=${page}&limit=6&search=${searchValue}`
       );
       dispatch(postSlice.actions.fetchSuccess(resp.data));
     } catch (error) {

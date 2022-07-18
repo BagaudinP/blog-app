@@ -1,27 +1,13 @@
 import iconClock from "../../assets/icons/clock.png";
+import { IPost } from "../../components/models/models";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { addFavoritePost } from "../../redux/slices/favoriteSlice";
-import { IPost } from "../models/models";
 
-import "./index.scss";
-
-type CardProps = {
-  id?: string;
-  title: string;
-  text: string;
-  imageUrl: string;
-  author: string;
-  likesCount: number;
-  createdAt: string;
-};
-
-const Card = ({ id, imageUrl, title, author, likesCount, text, createdAt }: CardProps) => {
+const FavoritePostsCard = ({ id, imageUrl, title, author, likesCount, text, createdAt }: IPost) => {
   const dispatch = useAppDispatch();
   const { favoritesPosts } = useAppSelector((state) => state.favorite);
 
   const activePosts = favoritesPosts.find((obj) => obj.id === id);
-  const date = createdAt.substring(0, 10);
-
   const onClickAddFavorite = () => {
     const favoritePost: IPost = {
       id,
@@ -34,16 +20,15 @@ const Card = ({ id, imageUrl, title, author, likesCount, text, createdAt }: Card
     };
     dispatch(addFavoritePost(favoritePost));
   };
-
   return (
     <div className="card">
       <div className="card-img">
         <img src={imageUrl} alt="" />
         <div
           onClick={onClickAddFavorite}
-          className={`d-flex justify-center align-center ${
+          className={`${
             activePosts ? "card-img__favorite" : "card-img__active"
-          }`}>
+          } ? d-flex justify-center align-center`}>
           <svg
             width="20"
             height="18"
@@ -65,7 +50,7 @@ const Card = ({ id, imageUrl, title, author, likesCount, text, createdAt }: Card
           </span>
           <span className="card-main__info-date">
             <img src={iconClock} alt="clock" />
-            <strong>{date}</strong>
+            <strong>{createdAt.substring(0, 10)}</strong>
           </span>
           <span className="card-main__info-like">
             <svg
@@ -91,4 +76,4 @@ const Card = ({ id, imageUrl, title, author, likesCount, text, createdAt }: Card
   );
 };
 
-export default Card;
+export default FavoritePostsCard;

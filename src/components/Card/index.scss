@@ -9,7 +9,8 @@
       height: 256px;
       position: absolute;
     }
-    &__favorite {
+    &__favorite,
+    &__active {
       width: 32px;
       height: 32px;
       cursor: pointer;
@@ -18,15 +19,9 @@
       position: relative;
       top: 10px;
       left: 10px;
-      &:hover {
-        background: #cccccc;
-      }
     }
     &__active {
       background: #adadad;
-      &:hover {
-        background: #ff7f7b;
-      }
     }
   }
   &-main {

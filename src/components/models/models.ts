@@ -1,10 +1,10 @@
-export interface IPost {
-  id: string;
+export type IPost = {
+  id?: string;
   title: string;
   text: string;
   imageUrl: string;
   author: string;
   likesCount: number;
-  categories: number;
+  categories?: number;
   createdAt: string;
-}
+};

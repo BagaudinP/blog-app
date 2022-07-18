@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "../components/Card/Card";
+import Card from "../components/Card/Card";
 import Sidebar from "../components/SideBar/Sidebar";
 import { fetchPosts } from "../redux/actions/postActions";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
@@ -14,7 +14,7 @@ const Main = () => {
   const { page, searchValue } = useAppSelector((state) => state.filter);
   const { posts, loading, error } = useAppSelector((state) => state.post);
 
-  const pageCount = Math.ceil(posts.length);
+  const pageCount = Math.ceil(posts.length / 3);
 
   const onPageChange = ({ selected }: { selected: number }): void => {
     const page = selected + 1;
@@ -41,25 +41,25 @@ const Main = () => {
               ) : (
                 <>
                   {posts.map((post) => (
-                    <Card key={post.id} post={post} />
+                    <Card key={post.id} {...post} />
                   ))}
                 </>
               )}
-              <ReactPaginate
-                className="main-paginate d-flex justify-center align-center"
-                breakLabel="..."
-                nextLabel=">"
-                onPageChange={onPageChange}
-                pageRangeDisplayed={4}
-                pageCount={pageCount}
-                forcePage={page - 1}
-                previousLabel="<"
-              />
             </div>
             <div className="main-content__sidebar">
               <Sidebar />
             </div>
           </div>
+          <ReactPaginate
+            className="main-paginate d-flex justify-center align-center"
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={onPageChange}
+            pageRangeDisplayed={4}
+            pageCount={pageCount}
+            forcePage={page - 1}
+            previousLabel="<"
+          />
         </>
       )}
     </div>

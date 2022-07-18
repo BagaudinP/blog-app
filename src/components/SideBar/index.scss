@@ -10,6 +10,7 @@
     margin-bottom: 30px;
     &__item {
       position: relative;
+      margin-bottom: 10px;
       img {
         width: 300px;
         height: 200px;
@@ -36,6 +37,10 @@
           font-size: 16px;
           font-family: Playfair Display, serif;
         }
+        .likes-count {
+          width: 33px;
+          margin-top: 4px;
+        }
       }
     }
   }
@@ -43,6 +48,7 @@
     margin-bottom: 30px;
     &__item {
       display: flex;
+      margin-bottom: 10px;
       img {
         width: 70px;
         height: 58.18px;
